@@ -1,0 +1,29 @@
+.navbar {
+    z-index: 10;
+    margin-top: auto;
+
+    &__inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-grow: 1;
+        border-top-left-radius: 24px;
+        border-top-right-radius: 24px;
+        padding-left: 40px;
+        padding-right: 40px;
+        background-color: #fff;
+        height: 72px;
+    }
+
+    &::before {
+        content: '';
+        display: block;
+        left: 0;
+        right: 0;
+        position: absolute;
+        background: linear-gradient(0deg, #f7f7fc, transparent);
+        height: 40px;
+        bottom: 72px;
+        z-index: 0;
+    }
+}

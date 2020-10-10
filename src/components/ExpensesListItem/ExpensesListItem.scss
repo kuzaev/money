@@ -1,0 +1,19 @@
+.expenses-list-item {
+    background-color: #cbd5e0;
+    border-radius: .5rem;
+    padding: .75rem;
+    margin-top: .5rem;
+
+    &:first-child {
+        margin-top: 0;
+    }
+
+    &__category-name {
+        color: #2d3748;
+        font-weight: 700;
+    }
+
+    &__category-cost {
+        color: #2d3748;
+    }
+}

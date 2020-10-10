@@ -1,0 +1,22 @@
+.menu {
+    display: none;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    background: rgba(#2d3748, 0.5); 
+    color: #fff;
+    left: 0;
+    right: 0;
+
+    &--open {
+        display: block;
+    }
+
+    &__inner {
+        width: 75%;
+        height: 100%;
+        padding: 1rem;
+        margin-left: auto;
+        background: #2d3748;
+    }
+}

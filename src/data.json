@@ -1,0 +1,32 @@
+{
+  "categories": [
+    {
+      "id": 1,
+      "name": "Развлечения",
+      "сurrentCost": 0,
+      "maxCost": 5000
+    },
+    {
+      "id": 2,
+      "name": "Продукты",
+      "сurrentCost": 1230,
+      "maxCost": 3000
+    }
+  ],
+
+  "expenses": [
+    {
+      "id": 1,
+      "categoryId": 1,
+      "text": "Сигареты",
+      "cost": "122"
+    },
+
+    {
+      "id": 2,
+      "categoryId": 2,
+      "text": "Сигареты",
+      "cost": "122"
+    }
+  ]
+}
