@@ -9,4 +9,16 @@
     flex-grow: 1;
     background-color: #F7F7FC;
     font-family: 'Poppins', sans-serif;
+
+    &::after {
+        content: '';
+        display: block;
+        left: 0;
+        right: 0;
+        position: sticky;
+        background: linear-gradient(0deg, #f7f7fc, transparent);
+        height: 40px;
+        bottom: -1rem;
+        z-index: 0;
+    }
 }

@@ -2,20 +2,34 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 import data from "../../data.json";
-import { setExpensesList } from "../../store/actions/expenses";
+import {
+  setExpensesList,
+  setLoading,
+  setCurrentCategoryName,
+} from "../../store/actions/expenses";
 import ExpensesListItem from "../ExpensesListItem";
 import { db } from "../../firebaseConfig";
 import { useParams } from "react-router-dom";
+import Loader from "../Loader";
 
 const ExpensesList = () => {
-  debugger;
   const dispatch = useDispatch();
-  const { list } = useSelector(({ expenses }) => expenses);
+  const { list, loading } = useSelector(({ expenses }) => expenses);
 
   const { id: categoryId } = useParams();
+  const categories = useSelector((state) => state.categories);
 
   useEffect(() => {
     if (categoryId) {
+      let category = null;
+      
+      if (categories) {
+        category = categories.list.find((c) => c.id === categoryId);
+        dispatch(setCurrentCategoryName(category.name));
+      }
+
+      
+
       db.collection("expenses")
         .where("categoryId", "==", categoryId)
         .get()
@@ -28,6 +42,10 @@ const ExpensesList = () => {
             docs.push({ ...expenseData, uid: expenseId });
           });
           dispatch(setExpensesList(docs));
+
+          setTimeout(() => {
+            dispatch(setLoading("LOADED"));
+          }, 1000);
         })
         .catch((err) => {
           console.log(err);
@@ -46,15 +64,29 @@ const ExpensesList = () => {
             docs.push({ ...expenseData, uid: expenseId });
           });
           dispatch(setExpensesList(docs));
+          setTimeout(() => {
+            dispatch(setLoading("LOADED"));
+          }, 1000);
         })
         .catch((err) => {
           console.log(err);
         });
     }
+
+    
+
+    return () => {
+      dispatch(setLoading("NEVER"));
+      dispatch(setCurrentCategoryName(null));
+    };
   }, []);
 
+  if (loading !== "LOADED") {
+    return <Loader />;
+  }
+
   if (list.length === 0) {
-    return <p>Пусто.</p>;
+    return <p className="text-center">Пусто.</p>;
   }
 
   return (

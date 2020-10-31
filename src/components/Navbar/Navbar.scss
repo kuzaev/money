@@ -15,15 +15,15 @@
         height: 72px;
     }
 
-    &::before {
-        content: '';
-        display: block;
-        left: 0;
-        right: 0;
-        position: absolute;
-        background: linear-gradient(0deg, #f7f7fc, transparent);
-        height: 40px;
-        bottom: 72px;
-        z-index: 0;
-    }
+    // &::before {
+    //     content: '';
+    //     display: block;
+    //     left: 0;
+    //     right: 0;
+    //     position: absolute;
+    //     background: linear-gradient(0deg, #f7f7fc, transparent);
+    //     height: 40px;
+    //     bottom: 72px;
+    //     z-index: 0;
+    // }
 }

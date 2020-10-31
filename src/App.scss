@@ -1,6 +1,49 @@
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('./fonts/Geometria.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('./fonts/Geometria-Bold.ttf') format('truetype');
+}
+
+body {
+    font-family: 'Poppins';
+}
+
 .app {
-    height: 100%;
-    flex-direction: column;
-    display: flex;
-    background-color: #F7F7FC;
+  height: 100%;
+  flex-direction: column;
+  display: flex;
+  background-color: #f7f7fc;
+}
+
+.btn {
+    background-color: #5F2EEA;
+    color: #Fff;
+    line-height: 40px;
+    font-size: 14px;
+    letter-spacing: .75px;
+    padding: 0 3rem;
+    border-radius: 40px;
+}
+
+input[type="text"] {
+    background: #EFF0F6;
+    display: block;
+    width: 100%;
+    padding: 0 16px;
+    line-height: 42px;
+    border-radius: 16px;
+}
+
+select {
+    
 }

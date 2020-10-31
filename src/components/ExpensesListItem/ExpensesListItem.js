@@ -1,6 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 // import { Redirect } from "react-router-dom";
+import Card from "../Card";
 
 import "./ExpensesListItem.scss";
 
@@ -14,10 +15,12 @@ const ExpensesListItem = ({ id, cost, categoryId, text }) => {
   // }
 
   return (
-    <div className="expenses-list-item">
-      <div className="expenses-list-item__category-name">{category ? category.name: 'Упс...'}</div>
-      <div className="expenses-list-item__category-cost">{cost} р.</div>
-    </div>
+    <Card>
+      <div className="expenses-list-item">
+        <div className="expenses-list-item__category-name">{category ? category.name: 'Упс...'}</div>
+        <div className="expenses-list-item__category-cost">{cost} ₽</div>
+      </div>
+    </Card>
   );
 };
 

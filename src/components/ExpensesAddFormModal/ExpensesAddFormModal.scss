@@ -1,56 +1,67 @@
-.expenses-add-form-modal {
-  position: fixed;
-  left: 0;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 11;
-  background-color: rgba(#2d3748, 0.5);
-  backdrop-filter: blur(2px);
-  padding: 1rem;
+// .expenses-add-form-modal {
+//   position: fixed;
+//   left: 0;
+//   top: 0;
+//   right: 0;
+//   bottom: 0;
+//   z-index: 11;
+//   background-color: rgba(#2d3748, 0.5);
+//   backdrop-filter: blur(2px);
+//   padding: 1rem;
 
-  &__inner {
-    background-color: #2d3748;
-    padding: 1rem;
-  }
+//   &__inner {
+//     background-color: #2d3748;
+//     padding: 1rem;
+//   }
 
-  &__title {
-    color: #fff;
-    flex: auto;
-  }
+//   &__title {
+//     color: #fff;
+//     flex: auto;
+//   }
 
-  &__header {
-      display: flex;
-      align-items: center;
-  }
+//   &__header {
+//       display: flex;
+//       align-items: center;
+//   }
 
-  &__body {
-    margin-top: 2rem;
-  }
+//   &__body {
+//     margin-top: 2rem;
+//   }
 
-  &__input {
-    width: 100%;
-    margin-bottom: 1rem;
+//   &__input {
+//     width: 100%;
+//     margin-bottom: 1rem;
 
-    & input {
-      width: 100%;
-      padding: .5rem 1rem;
-      border-radius: 0.5rem;
-    }
+//     & input {
+//       width: 100%;
+//       padding: .5rem 1rem;
+//       border-radius: 0.5rem;
+//     }
 
-    & select {
-      width: 100%;
-      padding: .5rem 1rem;
-      border-radius: 0.5rem;
-    }
-  }
+//     & select {
+//       width: 100%;
+//       padding: .5rem 1rem;
+//       border-radius: 0.5rem;
+//     }
+//   }
+// }
+
+// .btn {
+//   width: 100%;
+//   background-color: #e2e8f0;
+//   color: #4a5568;
+//   padding: .75rem;
+//   border-radius: 0.5rem;
+//   font-weight: 700;
+// }
+
+.expenses-add-form-modal__body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.btn {
+.expenses-add-form-modal__input {
+  margin-bottom: 16px;
   width: 100%;
-  background-color: #e2e8f0;
-  color: #4a5568;
-  padding: .75rem;
-  border-radius: 0.5rem;
-  font-weight: 700;
 }

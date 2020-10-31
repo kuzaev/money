@@ -1,0 +1,38 @@
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(148,148,158,.6);
+    z-index: 1;
+
+    &__inner {
+        background: #fff;
+        border-bottom-left-radius: 24px;
+        border-bottom-right-radius: 24px;
+        padding: 20px 24px 24px 24px;
+    }
+
+    &__header {
+        display: flex;
+        margin-bottom: 20px;
+    }
+
+    &__title {
+        flex-grow: 1;
+        font-family: 'Poppins', sans-serif;
+        font-weight: 700;
+        color: #14142B;
+        font-size: 24px;
+        line-height: 36px;
+        letter-spacing: 1px;
+    }
+
+    &__close {
+        margin-left: auto;
+        height: 36px;
+        display: flex;
+        align-items: center;
+    }
+}

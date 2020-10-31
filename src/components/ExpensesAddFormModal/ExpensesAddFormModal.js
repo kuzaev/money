@@ -3,9 +3,14 @@ import { X } from "react-bootstrap-icons";
 import { useDispatch, useSelector } from "react-redux";
 import { expensesAddFormModaltoggle } from "../../store/actions/modals";
 
+import Modal from "../Modal";
+
 import "./ExpensesAddFormModal.scss";
 import { addExpense } from "../../store/actions/expenses";
 import { db } from "../../firebaseConfig";
+import Select from "react-select";
+
+import api from "../../api"
 
 const ExpensesAddFormModal = () => {
   const dispatch = useDispatch();
@@ -39,76 +44,84 @@ const ExpensesAddFormModal = () => {
       return;
     }
 
-    db.collection("expenses")
-      .add(expense)
-      .then((docRef) => {
-        console.log(docRef.id);
-        dispatch(addExpense(expense));
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    api.addExpense(expense)
+      .then(data => dispatch(addExpense(data)))
+      .catch(err => alert(err.toString()));
 
-    db.collection("categories")
-      .doc(expense.categoryId)
-      .get()
-      .then((doc) => {
-        if (doc.exists) {
-          let data = doc.data();
-          let oldCost = data.cost || 0;
-          let newCost = Number(expense.cost) + Number(oldCost);
-          db.collection("categories")
-            .doc(expense.categoryId)
-            .update({ cost: newCost })
-            .catch((err) => console.log(err));
-        }
-      });
+    api.updateCostByCategory(expense.cost, expense.categoryId)
+      .then(data => {
+        console.log(data)
+      })
+      .catch(err => alert(err.toString()));
+
 
     dispatch(expensesAddFormModaltoggle());
   };
 
+  const closeModal = () => {
+    dispatch(expensesAddFormModaltoggle());
+  };
+
   return (
-    <div className="expenses-add-form-modal">
-      <div className="expenses-add-form-modal__inner">
-        <div className="expenses-add-form-modal__header">
-          <div className="expenses-add-form-modal__title">Новый расход</div>
-          <X
-            color="white"
-            size={32}
-            onClick={() => {
-              dispatch(expensesAddFormModaltoggle());
-            }}
-          />
+    <Modal handleClose={closeModal} close title="Новый расход">
+      <div className="expenses-add-form-modal">
+        <div className="expenses-add-form-modal__inner">
+          <form
+            className="expenses-add-form-modal__body"
+            onSubmit={handleSubmit}
+          >
+            <div className="expenses-add-form-modal__input">
+              <input
+                name="text"
+                type="text"
+                placeholder="Введите описание"
+                onChange={handleInputChange}
+              />
+            </div>
+            <div className="expenses-add-form-modal__input">
+              <input
+                name="cost"
+                type="text"
+                placeholder="Введите сумму расхода"
+                onChange={handleInputChange}
+              />
+            </div>
+            <div className="expenses-add-form-modal__input">
+              <select name="categoryId" onChange={handleInputChange}>
+                <option>Выберите категорию</option>
+                {categoriesList.map((option) => (
+                  <option value={option.id}>{option.name}</option>
+                ))}
+              </select>
+            </div>
+
+            <div className="expenses-add-form-modal__input">
+              <Select
+                placeholder="Выберите категорию"
+                options={[
+                  { value: "chocolate", label: "Chocolate" },
+                  { value: "strawberry", label: "Strawberry" },
+                  { value: "vanilla", label: "Vanilla" },
+                ]}
+                styles={
+                  {
+                    control: (provided, state) => ({
+                      ...provided,
+                      borderRadius: 16,
+                    }),
+                    valueContainer: (provided, state) => ({
+                      padding: 0
+                    })
+                  }
+                }
+              />
+            </div>
+
+            <button className="btn">Добавить</button>
+          </form>
         </div>
-        <form className="expenses-add-form-modal__body" onSubmit={handleSubmit}>
-          <div className="expenses-add-form-modal__input">
-            <input
-              name="text"
-              type="text"
-              placeholder="Введите описание"
-              onChange={handleInputChange}
-            />
-          </div>
-          <div className="expenses-add-form-modal__input">
-            <input
-              name="cost"
-              type="text"
-              placeholder="Введите сумму расхода"
-              onChange={handleInputChange}
-            />
-          </div>
-          <div className="expenses-add-form-modal__input">
-            <select name="categoryId" onChange={handleInputChange}>
-              <option>Выберите категорию</option>
-              {categoriesList.map((option) => (
-                <option value={option.id}>{option.name}</option>
-              ))}
-            </select>
-          </div>
-          <button className="btn">Добавить</button>
-        </form>
       </div>
-    </div>
+    </Modal>
   );
 };
 
